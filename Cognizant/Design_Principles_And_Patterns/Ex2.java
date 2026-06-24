@@ -1,146 +1,92 @@
-package Design_Principles_And_Patterns;
+// STEP 1: Project — FactoryMethodPatternExample
+//
+// WHAT IS FACTORY METHOD PATTERN?
+// A design pattern where instead of creating objects directly
+// using new, we let a factory class decide which object to create.
+//
+// Real life example:
+//   A document management system needs to create Word, PDF, Excel.
+//   Instead of doing new WordDocument() everywhere in the code,
+//   we ask the factory: "give me a document" and it creates the
+//   right one for us.
 
+
+
+// STEP 2: Define interface for document types
+// All document types must have an open() method
 interface Document {
     void open();
-    void close();
-    void getInfo();
-    String getType();
 }
 
+// STEP 3: Concrete document classes — implement Document
 class WordDocument implements Document {
-
-    public String getType() {
-        return "Word Document (.docx)";
-    }
-
+    @Override
     public void open() {
-        System.out.println("[" + getType() + "] Document opened successfully.");
-    }
-
-    public void close() {
-        System.out.println("[" + getType() + "] Document closed successfully.");
-    }
-
-    public void getInfo() {
-        System.out.println("Document Type : " + getType());
-        System.out.println("Used For      : Text editing and formatting");
-        System.out.println("Application   : Microsoft Word");
+        System.out.println("Opening Word Document (.docx)");
     }
 }
 
 class PdfDocument implements Document {
-
-    public String getType() {
-        return "PDF Document (.pdf)";
-    }
-
+    @Override
     public void open() {
-        System.out.println("[" + getType() + "] Document opened successfully.");
-    }
-
-    public void close() {
-        System.out.println("[" + getType() + "] Document closed successfully.");
-    }
-
-    public void getInfo() {
-        System.out.println("Document Type : " + getType());
-        System.out.println("Used For      : Read-only sharing and printing");
-        System.out.println("Application   : Adobe Acrobat / PDF Reader");
+        System.out.println("Opening PDF Document (.pdf)");
     }
 }
 
 class ExcelDocument implements Document {
-
-    public String getType() {
-        return "Excel Document (.xlsx)";
-    }
-
+    @Override
     public void open() {
-        System.out.println("[" + getType() + "] Document opened successfully.");
-    }
-
-    public void close() {
-        System.out.println("[" + getType() + "] Document closed successfully.");
-    }
-
-    public void getInfo() {
-        System.out.println("Document Type : " + getType());
-        System.out.println("Used For      : Data, tables, and spreadsheets");
-        System.out.println("Application   : Microsoft Excel");
+        System.out.println("Opening Excel Document (.xlsx)");
     }
 }
 
+
+// STEP 4: Factory Method
+// Abstract factory class with createDocument() method
+// Each concrete factory creates its own document type
 abstract class DocumentFactory {
-
+    // factory method — subclasses decide which document to create
     public abstract Document createDocument();
-
-    public void openDocument() {
-        Document doc = createDocument();
-        doc.open();
-    }
 }
 
 class WordDocumentFactory extends DocumentFactory {
+    @Override
     public Document createDocument() {
         return new WordDocument();
     }
 }
 
 class PdfDocumentFactory extends DocumentFactory {
+    @Override
     public Document createDocument() {
         return new PdfDocument();
     }
 }
 
 class ExcelDocumentFactory extends DocumentFactory {
+    @Override
     public Document createDocument() {
         return new ExcelDocument();
     }
 }
 
+// STEP 5: Test — create different document types using factory
 public class Ex2 {
 
     public static void main(String[] args) {
 
-
-        System.out.println("--- Creating Word Document ---");
-        DocumentFactory wordFactory = new WordDocumentFactory();
-        Document wordDoc = wordFactory.createDocument();
-        wordDoc.getInfo();
-        wordDoc.open();
-        wordDoc.close();
-
-        System.out.println();
-
-        System.out.println("--- Creating PDF Document ---");
-        DocumentFactory pdfFactory = new PdfDocumentFactory();
-        Document pdfDoc = pdfFactory.createDocument();
-        pdfDoc.getInfo();
-        pdfDoc.open();
-        pdfDoc.close();
-
-        System.out.println();
-
-        System.out.println("--- Creating Excel Document ---");
+        // Create factories
+        DocumentFactory wordFactory  = new WordDocumentFactory();
+        DocumentFactory pdfFactory   = new PdfDocumentFactory();
         DocumentFactory excelFactory = new ExcelDocumentFactory();
-        Document excelDoc = excelFactory.createDocument();
-        excelDoc.getInfo();
-        excelDoc.open();
-        excelDoc.close();
 
-        System.out.println();
+        // Use factory to create documents and open them
+        Document word  = wordFactory.createDocument();
+        Document pdf   = pdfFactory.createDocument();
+        Document excel = excelFactory.createDocument();
 
-        System.out.println("--- All Factories Together ---");
-        DocumentFactory[] allFactories = {
-            new WordDocumentFactory(),
-            new PdfDocumentFactory(),
-            new ExcelDocumentFactory()
-        };
-
-        for (DocumentFactory factory : allFactories) {
-            Document doc = factory.createDocument();
-            System.out.println("Created: " + doc.getType());
-        }
-
+        word.open();
+        pdf.open();
+        excel.open();
     }
 }
