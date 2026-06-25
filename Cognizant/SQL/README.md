@@ -1,51 +1,26 @@
-# Data Structures and Algorithms
+# PL/SQL programming
 
-## Exercise 2: E-commerce Platform Search Function
 
-### Scenario
-You are working on the search functionality of an e-commerce platform. The search needs to be optimized for fast performance.
+## Exercise 1: Control Structures — `Ex1.sql`
 
-### Steps
+### Scenario 1: Loan Interest Discount for Senior Customers
+**Question:** Write a PL/SQL block that loops through all customers, checks their age, and if they are above 60, apply a 1% discount to their current loan interest rates.
 
-**1. Understand Asymptotic Notation**
-- Explain Big O notation and how it helps in analyzing algorithms
-- Describe the best, average, and worst-case scenarios for search operations
+### Scenario 2: VIP Status Based on Balance
+**Question:** Write a PL/SQL block that iterates through all customers and sets a flag IsVIP to TRUE for those with a balance over $10,000.
 
-**2. Setup**
-- Create a class `Product` with attributes for searching, such as `productId`, `productName`, and `category`
-
-**3. Implementation**
-- Implement linear search and binary search algorithms
-- Store products in an array for linear search and a sorted array for binary search
-
-**4. Analysis**
-- Compare the time complexity of linear and binary search algorithms
-- Discuss which algorithm is more suitable for your platform and why
-
-### File
-- `Ex2.java`
+### Scenario 3: Loan Due Reminders
+**Question:** Write a PL/SQL block that fetches all loans due in the next 30 days and prints a reminder message for each customer.
 
 ---
 
-## Exercise 7: Financial Forecasting
+## Exercise 3: Stored Procedures — `Ex3.sql`
 
-### Scenario
-You are developing a financial forecasting tool that predicts future values based on past data.
+### Scenario 1: ProcessMonthlyInterest
+**Question:** Write a stored procedure ProcessMonthlyInterest that calculates and updates the balance of all savings accounts by applying an interest rate of 1% to the current balance.
 
-### Steps
+### Scenario 2: UpdateEmployeeBonus
+**Question:** Write a stored procedure UpdateEmployeeBonus that updates the salary of employees in a given department by adding a bonus percentage passed as a parameter.
 
-**1. Understand Recursive Algorithms**
-- Explain the concept of recursion and how it can simplify certain problems
-
-**2. Setup**
-- Create a method to calculate the future value using a recursive approach
-
-**3. Implementation**
-- Implement a recursive algorithm to predict future values based on past growth rates
-
-**4. Analysis**
-- Discuss the time complexity of your recursive algorithm
-- Explain how to optimize the recursive solution to avoid excessive computation
-
-### File
-- `Ex7.java`
+### Scenario 3: TransferFunds
+**Question:** Write a stored procedure TransferFunds that transfers a specified amount from one account to another, checking that the source account has sufficient balance before making the transfer.
